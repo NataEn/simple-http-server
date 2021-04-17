@@ -31,6 +31,14 @@ function getFile() {
 
 const server = http.createServer((req, res) => {
   // const url = new URL(req.url);
+  if (!req.method === "GET") {
+    res.end(http.STATUS_CODES[405]);
+  } else {
+    if (res.url === "/users") {
+      res.writeHead(200, { "Content-type": "application/json" });
+      res.end({ users: "one" });
+    }
+  }
   console.log(req);
   const extensionName = "";
 
